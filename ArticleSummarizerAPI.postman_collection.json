@@ -1,0 +1,64 @@
+{
+  "info": {
+    "name": "Article Summarizer API",
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "description": "Test the Article Summarizer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password\",\n  \"device_name\": \"postman\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/sanctum/token",
+          "host": ["{{base_url}}"],
+          "path": ["api", "sanctum", "token"]
+        }
+      }
+    },
+    {
+      "name": "Create Article",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My First Article\",\n  \"body\": \"This is the body of the article to be summarized.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/articles",
+          "host": ["{{base_url}}"],
+          "path": ["api", "articles"]
+        }
+      }
+    },
+    {
+      "name": "Get Article",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Accept", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/articles/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "articles", "1"]
+        }
+      }
+    }
+  ]
+} 
