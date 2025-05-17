@@ -4,5 +4,11 @@ namespace App\Services\TextAnalysis;
 
 interface TextAnalyzerInterface
 {
-    public function summarize(string $text): string;
+    /**
+     * Generate a summary for the given text
+     *
+     * @param string $text
+     * @return string
+     */
+    public function generate(string $text): string;
 } 

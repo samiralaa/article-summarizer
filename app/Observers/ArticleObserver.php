@@ -2,8 +2,9 @@
 
 namespace App\Observers;
 
-use App\Jobs\ProcessArticleSummary;
+use App\Jobs\GenerateArticleSummary;
 use App\Models\Article;
+use Illuminate\Support\Facades\Log;
 
 class ArticleObserver
 {
@@ -12,7 +13,12 @@ class ArticleObserver
      */
     public function created(Article $article): void
     {
-        ProcessArticleSummary::dispatch($article);
+        Log::info('Article created, dispatching summary job', [
+            'article_id' => $article->id,
+            'title' => $article->title
+        ]);
+        
+        GenerateArticleSummary::dispatch($article);
     }
 
     /**
@@ -20,7 +26,7 @@ class ArticleObserver
      */
     public function updated(Article $article): void
     {
-        ProcessArticleSummary::dispatch($article);
+        //
     }
 
     /**

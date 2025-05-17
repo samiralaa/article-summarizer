@@ -37,4 +37,4 @@ class ProcessArticleSummaryTest extends TestCase
             'summary' => 'Test summary',
         ]);
     }
-} 
+}
